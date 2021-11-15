@@ -1,5 +1,5 @@
 _git_push() {
-  git push
+  git push 2>/dev/null
   ret_code=$?
   if [[ ret_code -eq 128 ]]; then
     echo "Setting upstream origin branch and attempting to push"
