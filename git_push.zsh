@@ -1,10 +1,9 @@
 _git_push() {
   git push 2>/dev/null
-  ret_code=$?
-  if [[ ret_code -eq 128 ]]; then
+  if [ $? -ne 0 ]
+  then
     echo "Setting upstream origin branch and attempting to push"
-    branch=$(git rev-parse --abbrev-ref HEAD)
-    git push --set-upstream origin $branch
+    git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
   fi
 }
 
