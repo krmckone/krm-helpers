@@ -3,7 +3,7 @@ _git_push() {
   if [ $? -ne 0 ]
   then
     echo "Setting upstream origin branch and attempting to push"
-    git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+    git push -u origin $(git rev-parse --abbrev-ref HEAD)
   fi
 }
 
