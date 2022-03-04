@@ -3,7 +3,12 @@ _git_push() {
   if [ $? -ne 0 ]
   then
     echo "Setting upstream origin branch and attempting to push"
-    git push -u origin $(git rev-parse --abbrev-ref HEAD)
+    # There's a bug here that I don't know how to confidently fix.
+    # I'm guessing we need to be able to handle weird format/characters
+    # in the branch name. Right now we're going to wrap in quotes and
+    # see if that helps. It may be the case that the shell is interpreting
+    # some of the characters as special characters.
+    git push -u origin "$(git rev-parse --abbrev-ref HEAD)"
   fi
 }
 
